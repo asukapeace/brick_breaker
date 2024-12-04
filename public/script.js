@@ -16,8 +16,14 @@ const ball = { x: canvas.width / 2, y: canvas.height / 2, vx: 2, vy: 2 };
 // Create bricks
 for (let i = 0; i < 5; i++) {
   for (let j = 0; j < 8; j++) {
-    bricks.push({ x: j * (brickWidth + 5), y: i * (brickHeight + 5) });
+    const brickcolour = getRandomColour(); // Get a random colour for each brick
+    bricks.push({ x: j * (brickWidth + 5), y: i * (brickHeight + 5), colour: brickcolour });
   }
+}
+
+function getRandomColour() {
+  const colours = ['#008000', '#0000FF', '#FF0000', '#FFA500', '#800080'];
+  return colours[Math.floor(Math.random() * colours.length)];
 }
 
 // Draw game objects
@@ -29,6 +35,7 @@ function draw() {
   ctx.arc(ball.x, ball.y, ballSize / 2, 0, Math.PI * 2);
   ctx.fill();
   for (let brick of bricks) {
+    ctx.fillStyle = brick.colour; // Use the brick's colour when drawing
     ctx.fillRect(brick.x, brick.y, brickWidth, brickHeight);
   }
 }
