@@ -2,7 +2,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Game variables
-const brickWidth = 80;
+const brickWidth = 76;
 const brickHeight = 30;
 const paddleWidth = 100;
 const paddleHeight = 20;
