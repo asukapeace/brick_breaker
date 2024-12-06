@@ -7,7 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
-  <script src="script.js"></script>
+  <div id="gameScreen">
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <div style="display:inline">
+        <h2 style="text-align:center" 
+            id="currScore">
+            YOUR SCORE:
+        </h2>
+    </div>
+    <script src="script.js"></script>
+  </div>
 </body>
 </html>

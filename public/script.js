@@ -7,6 +7,7 @@ const brickHeight = 30;
 const paddleWidth = 100;
 const paddleHeight = 20;
 const ballSize = 20;
+let currentScore = 0;
 
 // Game objects
 const bricks = [];
@@ -71,6 +72,9 @@ function update() {
     if (ball.x > brick.x && ball.x < brick.x + brickWidth && ball.y > brick.y && ball.y < brick.y + brickHeight) {
       bricks.splice(bricks.indexOf(brick), 1);
       ball.vy = -ball.vy;
+      currentScore += 1;
+      document.getElementById("currScore").innerText =
+          `YOUR SCORE : ${currentScore}`;
     }
   }
 }
