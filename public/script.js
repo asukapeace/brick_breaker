@@ -8,7 +8,7 @@ const paddleWidth = 100;
 const paddleHeight = 20;
 const ballSize = 20;
 let currentScore = 0;
-
+let gameStarted = false;
 // Game objects
 const bricks = [];
 const paddle = { x: canvas.width / 2, y: canvas.height - paddleHeight - 20 };
@@ -79,6 +79,20 @@ function update() {
   }
 }
 
+function startGame(){
+  gameStarted=true;
+  gameLoop();
+}
+
+function gameLoop() {
+  update();
+  draw();
+
+  if (gameStarted) {
+    requestAnimationFrame(gameLoop);
+  }
+}
+
 // Handle user input
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') {
@@ -88,8 +102,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Main game loop
-setInterval(() => {
-  update();
-  draw();
-}, 1000 / 60);
+
+
+document.getElementById('start').addEventListener('click', function() {
+  startGame();
+});
