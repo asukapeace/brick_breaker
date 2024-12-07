@@ -2,12 +2,13 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Game variables
-const brickWidth = 80;
+const brickWidth = 76;
 const brickHeight = 30;
 const paddleWidth = 100;
 const paddleHeight = 20;
 const ballSize = 20;
-
+let currentScore = 0;
+let gameStarted = false;
 // Game objects
 const bricks = [];
 const paddle = { x: canvas.width / 2, y: canvas.height - paddleHeight - 20 };
@@ -71,7 +72,24 @@ function update() {
     if (ball.x > brick.x && ball.x < brick.x + brickWidth && ball.y > brick.y && ball.y < brick.y + brickHeight) {
       bricks.splice(bricks.indexOf(brick), 1);
       ball.vy = -ball.vy;
+      currentScore += 1;
+      document.getElementById("currScore").innerText =
+          `YOUR SCORE : ${currentScore}`;
     }
+  }
+}
+
+function startGame(){
+  gameStarted=true;
+  gameLoop();
+}
+
+function gameLoop() {
+  update();
+  draw();
+
+  if (gameStarted) {
+    requestAnimationFrame(gameLoop);
   }
 }
 
@@ -84,8 +102,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Main game loop
-setInterval(() => {
-  update();
-  draw();
-}, 1000 / 60);
+
+
+document.getElementById('start').addEventListener('click', function() {
+  startGame();
+});
