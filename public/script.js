@@ -84,11 +84,20 @@ function resetGame() {
   ball.y = canvas.height / 2;
   ball.vx = 2;
   ball.vy = 2;
+
   paddle.x = canvas.width / 2 - paddleWidth / 2;
-  paddle.y = canvas.height - paddleHeight - 20;
+
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 8; j++) {
+      const brickcolour = getRandomColour();
+      bricks.push({ x: j * (brickWidth + 5), y: i * (brickHeight + 5), colour: brickcolour });
+    }
+  }
+
   currentScore = 0;
   document.getElementById("currScore").innerText =
       `YOUR SCORE : ${currentScore}`;
+  update();
 }
 
 // Handle user input
